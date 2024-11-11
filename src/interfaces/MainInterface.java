@@ -4,17 +4,31 @@
  */
 package interfaces;
 
+import classes.AI;
+import classes.Admin;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author adminccs
  */
 public class MainInterface extends javax.swing.JFrame {
+    
+    public static DefaultListModel<String> modeloListaGanadores;
 
     /**
      * Creates new form MainInterface
      */
     public MainInterface() {
         initComponents();
+        coronaLabelSW.setVisible(false);
+        coronaLabelST.setVisible(false);
+        empateLabel.setVisible(false);
+        cancelLabel.setVisible(false);
+        modeloListaGanadores = new DefaultListModel<>();
+        ListaGanadores.setModel(modeloListaGanadores);
     }
 
     /**
@@ -31,7 +45,7 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        ganadoresSWars = new javax.swing.JLabel();
+        ganadoresStarWars = new javax.swing.JLabel();
         Colas = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ColasSW1 = new javax.swing.JLabel();
@@ -46,7 +60,7 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        ganadoresSTrek = new javax.swing.JLabel();
+        ganadoresStarTrek = new javax.swing.JLabel();
         Colas1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ColasST1 = new javax.swing.JLabel();
@@ -99,12 +113,12 @@ public class MainInterface extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(0, 102, 102));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ganadoresSWars.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        ganadoresSWars.setForeground(new java.awt.Color(255, 255, 255));
-        ganadoresSWars.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ganadoresSWars.setText("0");
-        ganadoresSWars.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        jPanel3.add(ganadoresSWars, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 70));
+        ganadoresStarWars.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        ganadoresStarWars.setForeground(new java.awt.Color(255, 255, 255));
+        ganadoresStarWars.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ganadoresStarWars.setText("0");
+        ganadoresStarWars.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        jPanel3.add(ganadoresStarWars, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 70));
 
         Colas.setBackground(new java.awt.Color(0, 102, 102));
         Colas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
@@ -169,12 +183,12 @@ public class MainInterface extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(153, 0, 153));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ganadoresSTrek.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        ganadoresSTrek.setForeground(new java.awt.Color(255, 255, 255));
-        ganadoresSTrek.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ganadoresSTrek.setText("0");
-        ganadoresSTrek.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        jPanel4.add(ganadoresSTrek, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 70));
+        ganadoresStarTrek.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        ganadoresStarTrek.setForeground(new java.awt.Color(255, 255, 255));
+        ganadoresStarTrek.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ganadoresStarTrek.setText("0");
+        ganadoresStarTrek.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        jPanel4.add(ganadoresStarTrek, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 70));
 
         Colas1.setBackground(new java.awt.Color(153, 0, 153));
         Colas1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
@@ -256,7 +270,7 @@ public class MainInterface extends javax.swing.JFrame {
 
         cancelLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cancelLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Cancel.png"))); // NOI18N
-        jPanel2.add(cancelLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 420, 150));
+        jPanel2.add(cancelLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 420, 150));
 
         empateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         empateLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Empate.png"))); // NOI18N
@@ -477,6 +491,100 @@ public class MainInterface extends javax.swing.JFrame {
                 new MainInterface().setVisible(true);
             }
         });
+        
+         // Crear instancias de las clases necesarias
+        Admin admin = new Admin();
+        AI ai = new AI();
+
+        // Inicializar personajes y colocarlos en las colas
+        admin.initializeCharacters();
+       
+    }
+    
+    public static void setDefStats() {
+        if (SWImage != null && STImage != null) {
+            SWImage.setIcon(new ImageIcon("src\\imgs\\question.jpg"));
+            STImage.setIcon(new ImageIcon("src\\imgs\\question.jpg"));
+            nombrePersonajeSW.setText("Buscando oponente...");
+            nombrePersonajeST.setText("Buscando oponente...");
+            UniquePointsSW.setText("0");
+            UniquePointsST.setText("0");
+
+        } else {
+            System.out.println("La imagen de Star Wars o la imagen de Star Trek es null. Asegúrate de que estén inicializados correctamente.");
+        }
+    }
+    
+    public static void setStarWarsIcon(String name, int power) {
+        SWImage.setIcon(new ImageIcon("src\\imgs\\StarWars\\" + name + ".png"));
+        nombrePersonajeSW.setText(name);
+        UniquePointsSW.setText(Integer.toString(power));
+    }
+
+    public static void setStarTrekIcon(String name, int power) {
+        STImage.setIcon(new ImageIcon("src\\assets\\StarTrek\\" + name + ".png"));
+        nombrePersonajeST.setText(name);
+        UniquePointsST.setText(Integer.toString(power));
+    }
+    
+     public static void marcadorStarWars(int puntaje) {
+        ganadoresStarWars.setText(Integer.toString(puntaje));
+    }
+
+    public static void marcadorStarTrek(int puntaje) {
+        ganadoresStarTrek.setText(Integer.toString(puntaje));
+    }
+    
+    
+     // Método para colocar la corona sobre la imagen del personaje ganador
+    public static void setCoronaPositionStarWars(JLabel characterImage) {
+        coronaLabelSW.setVisible(true);
+    }
+
+    public static void setCoronaPositionStarTrek(JLabel characterImage) {
+        coronaLabelST.setVisible(true);
+    }
+    
+    public static void setDrawVisible() {
+        empateLabel.setVisible(true);
+    }
+
+    public static void setCancelVisible() {
+        cancelLabel.setVisible(true);
+    }
+    
+    public static JLabel getColasStarWars(int index) {
+        switch (index) {
+            case 1:
+                return ColasSW1;
+            case 2:
+                return ColasSW2;
+            case 3:
+                return ColasSW3;
+            case 4:
+                return ColasSW4;
+            default:
+                return null;
+        }
+    }
+
+    public static JLabel getColasStarTrek(int index) {
+        switch (index) {
+            case 1:
+                return ColasST1;
+            case 2:
+                return ColasST2;
+            case 3:
+                return ColasST3;
+            case 4:
+                return ColasST4;
+            default:
+                return null;
+        }
+    }
+    
+    public static void agregarGanador(String elemento) {
+        modeloListaGanadores.addElement(elemento);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -503,8 +611,8 @@ public class MainInterface extends javax.swing.JFrame {
     public static javax.swing.JLabel coronaLabelST;
     public static javax.swing.JLabel coronaLabelSW;
     public static javax.swing.JLabel empateLabel;
-    public static javax.swing.JLabel ganadoresSTrek;
-    public static javax.swing.JLabel ganadoresSWars;
+    public static javax.swing.JLabel ganadoresStarTrek;
+    public static javax.swing.JLabel ganadoresStarWars;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
