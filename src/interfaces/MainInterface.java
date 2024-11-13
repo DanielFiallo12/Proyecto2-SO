@@ -498,6 +498,36 @@ public class MainInterface extends javax.swing.JFrame {
 
         // Inicializar personajes y colocarlos en las colas
         admin.initializeCharacters();
+        
+        // Simular rondas de la IA
+        for (int round = 1; round <= 1000; round++) { // Ejemplo: 1000 rondas
+            System.out.println("\n--- Ronda " + round + " ---");
+
+            // Mostrar las colas antes de la ronda
+            admin.printQueues();
+
+            // Seleccionar personajes para el combate desde las colas
+            classes.Character[] charactersForBattle = admin.selectCharactersForBattle();
+            classes.Character starWarsCharacter = charactersForBattle[0];
+            classes.Character starTrekCharacter = charactersForBattle[1];
+
+            if (starWarsCharacter != null && starTrekCharacter != null) {
+                System.out.println("Inicia el combate: " + starWarsCharacter.getName() + " vs " + starTrekCharacter.getName());
+            }
+            // Mostrar las colas en la interfaz
+            admin.actualizarColasEnInterfaz();
+
+            // Procesar la batalla en la IA
+            ai.processBattle(starWarsCharacter, starTrekCharacter);
+
+            // Actualizar las colas después de la ronda
+//            admin.updateQueues(); ESTO HACE QUE SE SUBAN LAS POSICIONES 1 DE LAS COLAS AL FINAL DE CADA RONDA.
+        }
+
+        // Mostrar las colas al final de la simulación
+        System.out.println("\n--- Colas finales ---");
+        admin.printQueues();
+        admin.actualizarColasEnInterfaz();
        
     }
     
@@ -527,6 +557,23 @@ public class MainInterface extends javax.swing.JFrame {
         UniquePointsST.setText(Integer.toString(power));
     }
     
+    public static JLabel getGanadoresST() {
+        return ganadoresStarTrek;
+    }
+
+    public static void setGanadoresST(JLabel ganadoresST) {
+        MainInterface.ganadoresStarTrek = ganadoresST;
+    }
+
+    public static JLabel getGanadoresSW() {
+        return ganadoresStarWars;
+    }
+
+    public static void setGanadoresSW(JLabel ganadoresSW) {
+        MainInterface.ganadoresStarWars = ganadoresSW;
+    }
+
+    
      public static void marcadorStarWars(int puntaje) {
         ganadoresStarWars.setText(Integer.toString(puntaje));
     }
@@ -548,9 +595,25 @@ public class MainInterface extends javax.swing.JFrame {
     public static void setDrawVisible() {
         empateLabel.setVisible(true);
     }
+    
+    public static JLabel getEmpateLabel() {
+        return empateLabel;
+    }
+    
+    public static JLabel getCancelLabel() {
+        return cancelLabel;
+    }
 
     public static void setCancelVisible() {
         cancelLabel.setVisible(true);
+    }
+    
+    public static void setNombreSW(String name) {
+        nombrePersonajeSW.setText(name);
+    }
+
+    public static void setNombreST(String name) {
+        nombrePersonajeST.setText(name);
     }
     
     public static JLabel getColasStarWars(int index) {
@@ -581,6 +644,118 @@ public class MainInterface extends javax.swing.JFrame {
             default:
                 return null;
         }
+    }
+    
+    public static JLabel getSTImage() {
+        return STImage;
+    }
+
+    public static void setSTImage(JLabel STImage) {
+        MainInterface.STImage = STImage;
+    }
+
+    public static JLabel getSWIMG() {
+        return SWImage;
+    }
+
+    public static void setSWImage(JLabel SWImage) {
+        MainInterface.SWImage = SWImage;
+    }
+
+    public static JLabel getUniquePointsST() {
+        return UniquePointsST;
+    }
+
+    public static void setUniquePointsST(JLabel UniquePointsST) {
+        MainInterface.UniquePointsST = UniquePointsST;
+    }
+
+    public static JLabel getUniquePointsSW() {
+        return UniquePointsSW;
+    }
+
+    public static void setUniquePointsSW(JLabel UniquePointsSW) {
+        MainInterface.UniquePointsSW = UniquePointsSW;
+    }
+
+    public static JLabel getNombreST() {
+        return nombrePersonajeST;
+    }
+
+    public static void setNombreST(JLabel nombrePersonajeST) {
+        MainInterface.nombrePersonajeST = nombrePersonajeST;
+    }
+
+    public static JLabel getNombreSW() {
+        return nombrePersonajeSW;
+    }
+
+    public static void setNombreSW(JLabel nombrePersonajeSW) {
+        MainInterface.nombrePersonajeSW = nombrePersonajeSW;
+    }
+
+    public static JLabel getColasST1() {
+        return ColasST1;
+    }
+
+    public static void setColasST1(JLabel ColasST1) {
+        MainInterface.ColasST1 = ColasST1;
+    }
+
+    public static JLabel getColasSW1() {
+        return ColasSW1;
+    }
+
+    public static void setColasSW1(JLabel ColasSW) {
+        MainInterface.ColasSW1 = ColasSW;
+    }
+
+    public static JLabel getColasST2() {
+        return ColasST2;
+    }
+
+    public static void setColasST2(JLabel ColasST2) {
+        MainInterface.ColasST2 = ColasST2;
+    }
+
+    public static JLabel getColasST3() {
+        return ColasST3;
+    }
+
+    public static void setColasST3(JLabel ColasST3) {
+        MainInterface.ColasST3 = ColasST3;
+    }
+
+    public static JLabel getColasST4() {
+        return ColasST4;
+    }
+
+    public static void setColasST4(JLabel ColasST4) {
+        MainInterface.ColasST4 = ColasST4;
+    }
+
+    public static JLabel getColasSW2() {
+        return ColasSW2;
+    }
+
+    public static void setColasSW2(JLabel ColasSW2) {
+        MainInterface.ColasSW2 = ColasSW2;
+    }
+
+    public static JLabel getColasSW3() {
+        return ColasSW3;
+    }
+
+    public static void setColasSW3(JLabel ColasSW3) {
+        MainInterface.ColasSW3 = ColasSW3;
+    }
+
+    public static JLabel getColasSW4() {
+        return ColasSW4;
+    }
+
+    public static void setColasSW4(JLabel ColasSW4) {
+        MainInterface.ColasSW4 = ColasSW4;
     }
     
     public static void agregarGanador(String elemento) {
