@@ -35,9 +35,9 @@ public class AI {
         int starTrekPoints = starTrekCharacter.getUniquePoints();
 
         // Setear el nombre imagen y puntos unicos de los personajes a pelear.
-        /*MainInterface.setStarWarsIcon(starWarsCharacter.getName(), starWarsCharacter.getUniquePoints());
-        MainInterface.setStarTrekcon(starTrekCharacter.getName(), starTrekCharacter.getUniquePoints());
-        */try {
+        MainInterface.setStarWarsIcon(starWarsCharacter.getName(), starWarsCharacter.getUniquePoints());
+        MainInterface.setStarTrekIcon(starTrekCharacter.getName(), starTrekCharacter.getUniquePoints());
+        try {
             if (Admin.roundCounter < 1) {
 
             } else {
@@ -49,13 +49,13 @@ public class AI {
         }
         if (result < WIN_PROBABILITY) {
             if (starWarsPoints > starTrekPoints) {
-                /*handleWinnerStarWars(starWarsCharacter, starTrekCharacter, starWarsPoints, starTrekPoints);
-                */MainInterface.setCoronaPositionStarWars(MainInterface.SWImage);
+                handleWinnerStarWars(starWarsCharacter, starTrekCharacter, starWarsPoints, starTrekPoints);
+                MainInterface.setCoronaPositionStarWars(MainInterface.SWImage);
                 ganadoresStarWars++;
                 MainInterface.marcadorStarWars(ganadoresStarWars);
             } else {
-                /*handleWinnerStarTrek(starWarsCharacter, starTrekCharacter, starWarsPoints, starTrekPoints);
-                */MainInterface.setCoronaPositionStarTrek(MainInterface.STImage);
+                handleWinnerStarTrek(starWarsCharacter, starTrekCharacter, starWarsPoints, starTrekPoints);
+                MainInterface.setCoronaPositionStarTrek(MainInterface.STImage);
                 ganadoresStarTrek++;
                 MainInterface.marcadorStarTrek(ganadoresStarTrek);
             }
@@ -75,8 +75,8 @@ public class AI {
             Admin.moveCharacterToPriority(Admin.reinforcementQueueStarTrek, Admin.starTrekQueue1);
         }
         Admin.incrementRoundCounters(); // Incrementa los contadores de todas las colas
-        /*Character.removeFromQueueN(Admin.starWarsQueue2, Admin.starWarsQueue3);
-        Character.removeFromQueueB(Admin.starTrekQueue2, Admin.starTrekQueue3);*/
+        Character.removeFromQueueN(Admin.starWarsQueue2, Admin.starWarsQueue3);
+        Character.removeFromQueueB(Admin.starTrekQueue2, Admin.starTrekQueue3);
         //Generador de personajes (80% de probabilidad)
         Admin.roundCounter++;
         if (Admin.roundCounter % 2 == 0) { // Se han completado dos rondas
@@ -99,7 +99,7 @@ public class AI {
         MainInterface.cancelLabel.setVisible(false);
     }
     
-    /*private void handleWinnerStarWars(Character winner, Character loser, int winnerPoints, int loserPoints) {
+    private void handleWinnerStarWars(Character winner, Character loser, int winnerPoints, int loserPoints) {
         System.out.println("¡Combate terminado! El ganador es: " + winner.getName()
                 + " (ID: " + winner.getId() + ") con " + winnerPoints + " puntos únicos.");
         // Lógica para añadir a la lista de ganadores
@@ -111,7 +111,7 @@ public class AI {
                 + " (ID: " + winner.getId() + ") con " + winnerPoints + " puntos únicos.");
         // Lógica para añadir a la lista de ganadores
         MainInterface.agregarGanador(winner.getName()+winner.getId());
-    }*/
+    }
     
     private void handleDraw(Character character1, Character character2) {
         System.out.println("¡Combate empatado! Ambos personajes vuelven a la cola de prioridad 1.");

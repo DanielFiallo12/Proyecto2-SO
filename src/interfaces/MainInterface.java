@@ -6,6 +6,8 @@ package interfaces;
 
 import classes.AI;
 import classes.Admin;
+import java.io.File;
+import java.net.URL;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -394,7 +396,7 @@ public class MainInterface extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(162, 162, 162)
                         .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -433,7 +435,7 @@ public class MainInterface extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 155, Short.MAX_VALUE))
+                .addGap(0, 227, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -448,7 +450,7 @@ public class MainInterface extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 46, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -530,33 +532,71 @@ public class MainInterface extends javax.swing.JFrame {
         admin.actualizarColasEnInterfaz();
        
     }
-    
-    public static void setDefStats() {
-        if (SWImage != null && STImage != null) {
-            SWImage.setIcon(new ImageIcon("src\\imgs\\question.jpg"));
-            STImage.setIcon(new ImageIcon("src\\imgs\\question.jpg"));
-            nombrePersonajeSW.setText("Buscando oponente...");
-            nombrePersonajeST.setText("Buscando oponente...");
-            UniquePointsSW.setText("0");
-            UniquePointsST.setText("0");
 
+public static void setDefStats() {
+    if (SWImage != null && STImage != null) {
+        SWImage.setIcon(new ImageIcon("assets/Unknown.png"));
+        STImage.setIcon(new ImageIcon("assets/Unknown.png"));
+        nombrePersonajeSW.setText("Buscando oponente...");
+        nombrePersonajeST.setText("Buscando oponente...");
+        UniquePointsSW.setText("0");
+        UniquePointsST.setText("0");
+    } else {
+        System.out.println("La imagen de Star Wars o la imagen de Star Trek es null. Asegúrate de que estén inicializados correctamente.");
+    }
+}
+
+public static void setStarWarsIcon(String name, int power) {
+    try {
+        // Ruta de la imagen (ruta relativa desde la raíz del proyecto)
+        String imagePath = "src/assets.StarWars/" + name + ".png";
+        File imageFile = new File(imagePath);
+
+        // Verificar si el archivo existe
+        if (!imageFile.exists()) {
+            System.out.println("Error: La imagen de Star Wars no se encontró en la ruta: " + imagePath);
         } else {
-            System.out.println("La imagen de Star Wars o la imagen de Star Trek es null. Asegúrate de que estén inicializados correctamente.");
-        }
-    }
-    
-    public static void setStarWarsIcon(String name, int power) {
-        SWImage.setIcon(new ImageIcon("src\\imgs\\StarWars\\" + name + ".png"));
-        nombrePersonajeSW.setText(name);
-        UniquePointsSW.setText(Integer.toString(power));
-    }
+            // Establecer el icono
+            SWImage.setIcon(new ImageIcon(imagePath));
 
-    public static void setStarTrekIcon(String name, int power) {
-        STImage.setIcon(new ImageIcon("src\\assets\\StarTrek\\" + name + ".png"));
-        nombrePersonajeST.setText(name);
-        UniquePointsST.setText(Integer.toString(power));
+            // Verificar datos
+            System.out.println("Nombre personaje SW: " + name);
+            System.out.println("Poder personaje SW: " + power);
+
+            // Establecer texto
+            nombrePersonajeSW.setText(name);
+            UniquePointsSW.setText(Integer.toString(power));
+        }
+    } catch (Exception e) {
+        System.out.println("Error al cargar imagen de Star Wars: " + e.getMessage());
     }
-    
+}
+
+public static void setStarTrekIcon(String name, int power) {
+    try {
+        // Ruta de la imagen (ruta relativa desde la raíz del proyecto)
+        String imagePath = "src/assets.StarTrek/" + name + ".png";
+        File imageFile = new File(imagePath);
+
+        // Verificar si el archivo existe
+        if (!imageFile.exists()) {
+            System.out.println("Error: La imagen de Star Trek no se encontró en la ruta: " + imagePath);
+        } else {
+            // Establecer el icono
+            STImage.setIcon(new ImageIcon(imagePath));
+
+            // Verificar datos
+            System.out.println("Nombre personaje ST: " + name);
+            System.out.println("Poder personaje ST: " + power);
+
+            // Establecer texto
+            nombrePersonajeST.setText(name);
+            UniquePointsST.setText(Integer.toString(power));
+        }
+    } catch (Exception e) {
+        System.out.println("Error al cargar imagen de Star Trek: " + e.getMessage());
+    }
+}
     public static JLabel getGanadoresST() {
         return ganadoresStarTrek;
     }
