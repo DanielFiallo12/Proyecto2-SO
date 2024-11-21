@@ -15,14 +15,14 @@ import interfaces.MainInterface;
 public class Admin {
     
     public static int roundCounter = 0;
-    public static Queue<Character> starWarsQueue1; // Colas para Nintendo 
+    public static Queue<Character> starWarsQueue1; 
     public static Queue<Character> starWarsQueue2;
     public static Queue<Character> starWarsQueue3;
-    public static Queue<Character> starTrekQueue1; // Colas para Bethesda 
+    public static Queue<Character> starTrekQueue1; 
     public static Queue<Character> starTrekQueue2;
     public static Queue<Character> starTrekQueue3;
-    public static Queue<Character> reinforcementQueueStarWars; // Cola de refuerzo para Nintendo
-    public static Queue<Character> reinforcementQueueStarTrek; // Cola de refuerzo para Bethesda
+    public static Queue<Character> reinforcementQueueStarWars; 
+    public static Queue<Character> reinforcementQueueStarTrek; 
     
     public Admin() {
         // Inicializa las colas para Star Wars
@@ -186,10 +186,10 @@ public class Admin {
 
                 // Determinar la cola actual según el índice
                 if (i < 3) {
-                    resultadoStarWars.append("Star Wars Queue " + (i + 1) + ":\n");
+                    resultadoStarWars.append("Queue " + (i + 1) + ": \n");
                     currentQueue = getStarWarsQueue(i + 1);
                 } else {
-                    resultadoStarWars.append("Reinforcement Queue Star Wars:\n");
+                    resultadoStarWars.append("Reinforcement Queue: \n");
                     currentQueue = reinforcementQueueStarWars;
                 }
 
@@ -208,10 +208,10 @@ public class Admin {
 
                 // Determinar la cola actual según el índice
                 if (i < 3) {
-                    resultadoStarTrek.append("Star Trek Queue " + (i + 1) + ":\n");
+                    resultadoStarTrek.append("Queue " + (i + 1) + ": \n");
                     currentQueue = getStarTrekQueue(i + 1);
                 } else {
-                    resultadoStarTrek.append("Reinforcement Queue Star Trek:\n");
+                    resultadoStarTrek.append("Reinforcement Queue: \n");
                     currentQueue = reinforcementQueueStarTrek;
                 }
 

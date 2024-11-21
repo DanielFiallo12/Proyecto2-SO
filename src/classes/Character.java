@@ -27,7 +27,7 @@ public class Character {
     private int uniquePoints; // Puntos únicos según nivel de prioridad
     private Set<String> specialAbilities; // Habilidades especiales
 
-    private static final String[] STAR_TREK_NAMES = {"Data", "GabrielLorca", "GeordiLaForge", "GulDukat", "JamesTKirk", "Jaylah", "Jean-LucPicard", "KhanNoonien", "Kirk", "Krall", "LeonardMccoy", "MontgomeryScott", "Nero", "NyotaUhura", "Q", "ReinaBorg", "Sarek", "SevenOfNine", "Shinzo","Spock", "Spock2", "Sulu", "TheDoctor", "Worf"};
+    private static final String[] STAR_TREK_NAMES = {"Data", "GabrielLorca", "GeordiLaForge", "GulDukat", "JamesTKirk", "Jaylah", "Jean-LucPicard", "KhanNoonien", "Kirk", "Krall", "LeonardMccoy", "MontgomeryScott", "Nero", "NyotaUhura", "Q", "ReinaBorg", "Sarek", "SevenOfNine", "Shinzon","Spock", "Spock2", "Sulu", "TheDoctor", "Worf"};
     private static final String[] STAR_WARS_NAMES = {"AhsokaTano", "BB-8", "BobaFett", "CassianAndor", "Chewbacca", "DarthMaul", "DarthVader", "EmperadorPalpatine", "Han", "HanSolo", "JabbaHutt", "KyloRen", "LeiaOrgana", "LukeSkywalker", "Mace", "MaceWindu", "Mandalorian", "Obi-WanKenobi", "PadméAmidala","Qui-GonJinn", "R2-D2", "Yoda"};
 
     private Character(String name, String studio) {
